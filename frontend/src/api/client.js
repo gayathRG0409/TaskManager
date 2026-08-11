@@ -1,3 +1,5 @@
+import { config } from '../config'
+
 const TOKEN_KEY = 'taskflow_token'
 
 export function getToken() {
@@ -18,7 +20,7 @@ async function request(path, { method = 'GET', body, token } = {}) {
   const auth = token ?? getToken()
   if (auth) headers.Authorization = `Bearer ${auth}`
 
-  const response = await fetch(`/api${path}`, {
+  const response = await fetch(`${config.apiBase}/api${path}`, {
     method,
     headers,
     body: body !== undefined ? JSON.stringify(body) : undefined,

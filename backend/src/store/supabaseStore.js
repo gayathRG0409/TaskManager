@@ -16,6 +16,11 @@ function supabase() {
 function throwDb(error, fallback = 'Database error') {
   const err = new Error(error?.message || fallback)
   err.cause = error
+  if (error?.code === 'PGRST205' || /Could not find the table/i.test(error?.message || '')) {
+    err.code = 'SCHEMA_MISSING'
+    err.message =
+      'Database tables are missing. Run docs/supabase-schema.sql in the Supabase SQL Editor, then try again.'
+  }
   throw err
 }
 

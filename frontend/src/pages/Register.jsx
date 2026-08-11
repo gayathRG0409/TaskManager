@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import PasswordField from '../components/PasswordField'
 import { useAuth } from '../context/AuthContext'
 import { useNotify } from '../context/NotifyContext'
 
@@ -71,19 +72,12 @@ export default function Register() {
               required
             />
           </div>
-          <div className="field">
-            <label htmlFor="register-password">Password</label>
-            <input
-              id="register-password"
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              placeholder="At least 6 characters"
-              required
-              minLength={6}
-            />
-            <span className="field-hint">Use 6+ characters.</span>
-          </div>
+          <PasswordField
+            id="register-password"
+            autoComplete="new-password"
+            placeholder="At least 6 characters"
+            hint="Use 6+ characters."
+          />
           {error ? (
             <p className="form-error" role="alert">
               {error}

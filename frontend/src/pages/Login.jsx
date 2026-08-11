@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import PasswordField from '../components/PasswordField'
 import { useAuth } from '../context/AuthContext'
 import { useNotify } from '../context/NotifyContext'
 
@@ -59,18 +60,10 @@ export default function Login() {
               required
             />
           </div>
-          <div className="field">
-            <label htmlFor="login-password">Password</label>
-            <input
-              id="login-password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              placeholder="••••••••"
-              required
-              minLength={6}
-            />
-          </div>
+          <PasswordField
+            id="login-password"
+            autoComplete="current-password"
+          />
           {error ? (
             <p className="form-error" role="alert">
               {error}

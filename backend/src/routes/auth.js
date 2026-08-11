@@ -39,6 +39,10 @@ router.post('/register', async (req, res) => {
     if (err.code === 'EMAIL_TAKEN') {
       return res.status(409).json({ error: 'Email already registered' })
     }
+    if (err.code === 'SCHEMA_MISSING') {
+      console.error(err)
+      return res.status(503).json({ error: err.message })
+    }
     console.error(err)
     return res.status(500).json({ error: 'Registration failed' })
   }
